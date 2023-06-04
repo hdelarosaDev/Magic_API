@@ -2,6 +2,7 @@
 using Magic_API.Models;
 using Magic_API.Models.Dto;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.ExceptionServices;
 
@@ -11,6 +12,8 @@ namespace Magic_API.Controllers
     [ApiController]
     public class VillaController : ControllerBase
     {
+        //Crear un metodo para la version
+
         //IEnumerable es que retorna una lista
         [HttpGet]
         public ActionResult< IEnumerable<VillaDto>> GetVillas()
@@ -105,6 +108,63 @@ namespace Magic_API.Controllers
             return NoContent();
 
         }
-    
+
+
+        [HttpPut("id:int")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult UpdateVilla(int id, [FromBody] VillaDto villaDto)
+        {
+            if(villaDto==null || id!=villaDto.Id)
+            {
+                return BadRequest();
+            }
+            var villa=VillaStore.villaList.FirstOrDefault(v=> v.Id==id);
+            villa.Nombre=villaDto.Nombre;
+            villa.Ocupantes=villaDto.Ocupantes;
+            villa.MetrosCuadrados = villaDto.MetrosCuadrados;
+            return NoContent() ;    
+
+        }
+
+
+
+        //Para usar el HttpPatch debemos de agregar unos paquete
+        /*
+         * 
+         *
+         *
+         [
+  {
+   
+    "path": "/nombre",
+    "op": "replace",
+    "value": "Villa linda"
+  }
+]
+         * */
+        [HttpPatch("id:int")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult UpdatePatchVilla(int id, JsonPatchDocument<VillaDto> patchDto)
+        {
+            //if (patchDto == null || id != 0)
+            //{
+            //    return BadRequest();
+            //}
+            var villa = VillaStore.villaList.FirstOrDefault(v => v.Id == id);
+
+            patchDto.ApplyTo(villa,ModelState);
+            
+            if(!ModelState.IsValid)
+            { 
+                return BadRequest(ModelState);
+            }
+
+            return NoContent();
+
+        }
+
+
     }
 }

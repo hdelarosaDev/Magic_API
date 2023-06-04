@@ -31,3 +31,7 @@ C:\hdprogrammer\Magic_API\Magic_API\obj\Debug\net7.0\refint\Magic_API.dll
 C:\hdprogrammer\Magic_API\Magic_API\obj\Debug\net7.0\Magic_API.pdb
 C:\hdprogrammer\Magic_API\Magic_API\obj\Debug\net7.0\Magic_API.genruntimeconfig.cache
 C:\hdprogrammer\Magic_API\Magic_API\obj\Debug\net7.0\ref\Magic_API.dll
+C:\hdprogrammer\Magic_API\Magic_API\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\hdprogrammer\Magic_API\Magic_API\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\hdprogrammer\Magic_API\Magic_API\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\hdprogrammer\Magic_API\Magic_API\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
