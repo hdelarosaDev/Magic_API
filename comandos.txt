@@ -1,0 +1,6 @@
+En package manager console
+	add-migration Creandodb
+
+Crear el modelo por primera vez
+Para que se cree en SQL SERVEr:
+	update-database
